@@ -14,9 +14,9 @@ const DEFAULT_STATE = {
 function Form() {
   const [formState, setFormState] = useState(DEFAULT_STATE);
 
-  function handleSubmit() {
+  function handleSubmit(event, props) {
     event.preventDefault();
-    props.addOrder(formState);
+    // props.addOrder(formState);
 
     setFormState({
       ...DEFAULT_STATE,
@@ -24,7 +24,7 @@ function Form() {
     event.target.reset();
   }
 
-  function handleChange() {
+  function handleChange(event) {
     const itemType = event.target.name;
     const item = event.target.value;
 
@@ -44,7 +44,7 @@ function Form() {
   return (
     <div className="ui raised container segment">
       <h1 className="ui block header">Order Form</h1>
-      <form className="ui form" id="order-form" onSubmit={handleSubmit}>
+      <form className="ui form" id="order-form" onSubmit={handleSubmit} onChange={handleChange}>
         <ProteinForm
           protein={formState.protein}
           handleOnChange={handleChange}
